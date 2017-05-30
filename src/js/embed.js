@@ -1,6 +1,7 @@
 import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
+import _ from 'underscore'
 
 var mode = null, data = null;
 
@@ -28,6 +29,7 @@ function buildApp(resp) {
 
     console.log(mode);
     console.log(data);
+    console.log(_);
     
 }
 

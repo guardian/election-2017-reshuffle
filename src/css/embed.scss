@@ -2,11 +2,200 @@
 
 html,
 body {
-    @include fs-bodyCopy(2);
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
+  color: #333;
+  margin: 0;
+  padding: 0; }
+
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 .interactive-embed {
-}
+  max-width: 860px; }
+
+.gv-cabinet-header {
+  padding: 5px 0;
+  border-bottom: 1px solid #eaeaea; }
+  .gv-cabinet-header h2 {
+    font-family: 'Guardian Egyptian Web', Georgia;
+    font-size: 24px;
+    padding: 0;
+    margin: 0; }
+
+.gv-cabinet-footer {
+  font-family: 'Guardian Text Sans Web', Arial;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 4px 0;
+  border-top: 1px solid #eaeaea;
+  color: #767676; }
+
+.gv-cabinet-key {
+  left: 3px;
+  width: 100%; }
+
+.gv-cabinet-status {
+  display: inline-block;
+  line-height: 15px;
+  margin-bottom: 10px;
+  margin-right: 20px; }
+
+.gv-cabinet-dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 100px;
+  background: rgba(249, 130, 57, 0.55); }
+  .gv-cabinet-dot.brexit {
+    background: rgba(184, 34, 102, 0.6); }
+  .gv-cabinet-dot.remain {
+    background: rgba(0, 86, 137, 0.4); }
+  .gv-cabinet-dot.Back {
+    background: rgba(112, 202, 197, 0.75); }
+  .gv-cabinet-dot.Gone {
+    background: rgba(255, 206, 75, 0.75); }
+  .gv-cabinet-dot.Unable {
+    background: rgba(249, 130, 57, 0.75); }
+
+.gv-cabinet-label {
+  margin-left: 20px;
+  font-family: 'Guardian Text Sans Web', Arial;
+  font-size: 14px;
+  line-height: 15px;
+  vertical-align: top;
+  color: #767676;
+  display: inline-block; }
+
+.gv-cabinet-people {
+  font-size: 0;
+  margin: 10px 0 0 0;
+  position: relative; }
+
+.person {
+  width: 33%;
+  padding: 5px;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: top; }
+  @media (min-width: 400px) {
+    .person {
+      width: 25%; } }
+  @media (min-width: 520px) {
+    .person {
+      width: calc(100%/6); } }
+  @media (min-width: 860px) {
+    .person {
+      width: calc(100%/10); } }
+
+.person-name {
+  font-size: 13px;
+  line-height: 18px;
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #767676; }
+  @media (min-width: 600px) {
+    .person-name {
+      font-size: 14px;
+      line-height: 20px;
+      font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; } }
+
+.person-position {
+  font-family: 'Guardian Text Sans Web', Arial;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #444; }
+  @media (min-width: 600px) {
+    .person-position {
+      font-size: 14px; } }
+
+.person-img {
+  position: relative;
+  line-height: 0; }
+  .person-img.status-brexit::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(184, 34, 102, 0.3); }
+  .person-img.status-remain::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(0, 86, 137, 0.25); }
+  .person-img.status-existing::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.25); }
+  .person-img.status-Back::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(112, 202, 197, 0.5); }
+  .person-img.status-Gone::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(255, 206, 75, 0.3); }
+  .person-img.status-Unable::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(249, 130, 57, 0.55); }
+  .person-img img {
+    filter: grayscale(100%);
+    -webkit-filter: url(#greyed);
+    width: 100%;
+    border-radius: 100px; }
+
+.gv-cabinet-leader {
+  display: block;
+  margin: 0 auto;
+  width: 40%; }
+  @media (min-width: 400px) {
+    .gv-cabinet-leader {
+      width: 33%; } }
+  @media (min-width: 520px) {
+    .gv-cabinet-leader {
+      width: calc(100%/4.5); } }
+  @media (min-width: 860px) {
+    .gv-cabinet-leader {
+      width: calc(100%/7); } }
+
+.resigned {
+  margin-top: 5px;
+  padding-top: 5px; }
