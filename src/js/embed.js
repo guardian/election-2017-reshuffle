@@ -1,6 +1,7 @@
 import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
+import personHTML from './text/person.html!text'
 import _ from 'underscore'
 
 var mode = null, data = null;
@@ -30,6 +31,18 @@ function buildApp(resp) {
     console.log(mode);
     console.log(data);
     console.log(_);
+
+    var i, html="", personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group");
+
+    for (i = 0; i<data.length; i++) {
+
+        html+= personTemplate({ photoSrc: data[i]["Photo"],
+								personName: data[i]["Name"],
+								personTitle: data[i]["Title"]
+							});
+    }
+
+    personGroup.innerHTML = html;
     
 }
 
