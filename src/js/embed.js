@@ -28,22 +28,57 @@ function buildApp(resp) {
         mode = "full";
     }
 
-    console.log(mode);
-    console.log(data);
-    console.log(_);
+    //console.log(mode);
+    //console.log(data);
+    //console.log(_);
 
-    var i, html="", personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group");
+    var i, html="", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status;
 
     for (i = 0; i<data.length; i++) {
 
-        html+= personTemplate({ photoSrc: data[i]["Photo"],
+        status = getStatusClass(data[i]["Status"]);
+
+        personHtml = personTemplate({ photoSrc: data[i]["Photo"],
 								personName: data[i]["Name"],
-								personTitle: data[i]["Title"]
+								personTitle: data[i]["Title"],
+                                status: status
 							});
+        if (status == "leaving") {
+            leaveHtml += personHtml;
+        } else {
+            html += personHtml;
+        }
+        
     }
 
     personGroup.innerHTML = html;
+    leaveGroup.innerHTML = leaveHtml;
     
+}
+
+function getStatusClass( status ) {
+
+    status=status.toLowerCase();
+
+    switch (status) {
+
+        case "change":
+        return "change";
+        break;
+
+        case "new":
+        return "new";
+        break;
+       
+        case "leaving":
+        return "leaving";
+        break;
+       
+        default:
+        return "no-change";
+        break;
+
+    }
 }
 
  function getParameterByName(name, url) {

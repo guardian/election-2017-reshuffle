@@ -58,6 +58,14 @@ div {
     background: rgba(255, 206, 75, 0.75); }
   .gv-cabinet-dot.Unable {
     background: rgba(249, 130, 57, 0.75); }
+  .gv-cabinet-dot.new {
+    background: rgba(255,255,0, 0.75); }
+  .gv-cabinet-dot.leaving {
+    background: rgba(249, 130, 57, 0.55); }
+  .gv-cabinet-dot.change {
+    background: rgba(112, 202, 197, 0.75); }
+  .gv-cabinet-dot.no-change {
+    background: rgba(0, 86, 137, 0.4); }
 
 .gv-cabinet-label {
   margin-left: 20px;
@@ -117,7 +125,7 @@ div {
 .person-img {
   position: relative;
   line-height: 0; }
-  .person-img.status-brexit::after {
+   .person-img.status-leaving::after {
     content: "";
     display: block;
     position: absolute;
@@ -126,8 +134,28 @@ div {
     left: 0;
     right: 0;
     border-radius: 100px;
-    background: rgba(184, 34, 102, 0.3); }
-  .person-img.status-remain::after {
+    background: rgba(249, 130, 57, 0.25); }
+    .person-img.status-new::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(255,255,0, 0.25); }
+    .person-img.status-change::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background: rgba(112, 202, 197, 0.35); }
+     .person-img.status-no-change::after {
     content: "";
     display: block;
     position: absolute;
@@ -137,46 +165,6 @@ div {
     right: 0;
     border-radius: 100px;
     background: rgba(0, 86, 137, 0.25); }
-  .person-img.status-existing::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.25); }
-  .person-img.status-Back::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    background: rgba(112, 202, 197, 0.5); }
-  .person-img.status-Gone::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    background: rgba(255, 206, 75, 0.3); }
-  .person-img.status-Unable::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    background: rgba(249, 130, 57, 0.55); }
   .person-img img {
     filter: grayscale(100%);
     -webkit-filter: url(#greyed);
