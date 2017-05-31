@@ -32,15 +32,26 @@ function buildApp(resp) {
     //console.log(data);
     //console.log(_);
 
-    var i, html="", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status;
+    var i, html="", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status, title, previousTitle;
 
     for (i = 0; i<data.length; i++) {
 
         status = getStatusClass(data[i]["Status"]);
+        previousTitle = "";
+        title = data[i]["Title"];
+        if (status == "change" ) {
+            previousTitle = " was " + data[i]["Previous title"];
+        }
+        if (status == "leaving") {
+            //previousTitle = "Was " + data[i]["Previous title"];
+            previousTitle = "was " + data[i]["Previous title"] + "";
+            title = "";
+        }
 
         personHtml = personTemplate({ photoSrc: data[i]["Photo"],
 								personName: data[i]["Name"],
-								personTitle: data[i]["Title"],
+								personTitle: title,
+                                personPreviousTitle: previousTitle,
                                 status: status
 							});
         if (status == "leaving") {

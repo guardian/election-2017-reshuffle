@@ -114,13 +114,19 @@ div {
 .person-position {
   font-family: 'Guardian Text Sans Web', Arial;
   font-size: 12px;
+  line-height: 14px;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
   color: #444; }
+  span {
+    font-style: italic;
+     color: #999;
+  }
   @media (min-width: 600px) {
     .person-position {
-      font-size: 14px; } }
+      font-size: 14px;
+      line-height: 16px; } }
 
 .person-img {
   position: relative;
