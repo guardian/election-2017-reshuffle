@@ -39,6 +39,7 @@ function buildApp(resp) {
         status = getStatusClass(data[i]["Status"]);
         previousTitle = "";
         title = data[i]["Title"];
+
         if (status == "change" ) {
             previousTitle = " was " + data[i]["Previous title"];
         }
@@ -54,6 +55,7 @@ function buildApp(resp) {
                                 personPreviousTitle: previousTitle,
                                 status: status
 							});
+                            
         if (status == "leaving") {
             leaveHtml += personHtml;
         } else {
@@ -69,7 +71,7 @@ function buildApp(resp) {
 
 function getStatusClass( status ) {
 
-    status=status.toLowerCase();
+    status=status.toLowerCase().trim();
 
     switch (status) {
 
