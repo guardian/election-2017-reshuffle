@@ -40,7 +40,7 @@ var checkOutButton = function () {
         outButton.style.display = 'none';
     }
 
-    console.log(pageWidth + "    "  + numShowing + "   " + totalOut);
+    //console.log(pageWidth + "    "  + numShowing + "   " + totalOut);
 
 };
 
