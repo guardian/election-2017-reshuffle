@@ -108,6 +108,10 @@ div {
     display:inline-block;
 } }
   @media (min-width: 620px) {
+  
+   .collapsed .person:nth-child(-n+18){
+    display:none;
+}
    .collapsed .person:nth-child(-n+9){
     display:inline-block;
 } }
