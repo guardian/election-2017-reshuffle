@@ -116,6 +116,11 @@ div {
     display:inline-block;
 } }
 
+ @media (min-width: 860px) {
+     .collapsed .person:nth-child(-n+18){
+    display:inline-block;
+} }
+
 .person {
   
   width: 33%;

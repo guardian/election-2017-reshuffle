@@ -10,9 +10,9 @@ var eventTimeout, totalOut = 0, outButton, element, outClicked = false;
 /**
  * The function that runs the event actions
  */
-var checkOutButton = function () {
+var checkOutButton = function () {  //Toggle show button visibility for "Leaving" group depending on viewport width
 
-    var numShowing = null;
+    var maxToShow = null;
 
     var pageWidth = element.offsetWidth;
 	// handle the event...
@@ -24,17 +24,17 @@ var checkOutButton = function () {
   
 
     if (pageWidth < 400 ) {
-        numShowing = 9;
+        maxToShow = 9;
     } else if (pageWidth >= 400 && pageWidth < 520) {
-        numShowing = 12;
+        maxToShow = 12;
     } else if (pageWidth >= 520 && pageWidth < 860) {
-         numShowing = 18; // 18 - 5;
+         maxToShow = 18; // 18 - 5;
          
     } else {
-        numShowing = 9999999;
+        maxToShow = 9999999;
     }
 
-    if (totalOut > numShowing && !outClicked) {
+    if (totalOut > maxToShow && !outClicked) {
         outButton.style.display = 'inline-block';
     } else {
         outButton.style.display = 'none';
