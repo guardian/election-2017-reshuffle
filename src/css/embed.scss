@@ -8,6 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   }
 
+.monochrome-svg {
+  display:none;
+}
+
 div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -15,6 +19,7 @@ div {
 
 .interactive-embed {
   max-width: 860px; }
+
 
 .gv-cabinet-header {
   padding: 5px 0;
@@ -270,7 +275,7 @@ div {
       width: calc(100%/7); } }
 
 .resigned {
-  margin-top: 5px;
+  margin-top: 10px;
   padding-top: 5px; }
 
 
