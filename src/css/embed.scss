@@ -219,7 +219,7 @@ div {
     right: 0;
     border-radius: 100px;
     mix-blend-mode: color;
-    background: rgba(227, 31, 38, 0.5); }
+    background: rgba(227, 31, 38, 0.8); }
     .person-img.status-new::after {
     content: "";
     display: block;
@@ -230,7 +230,7 @@ div {
     right: 0;
     border-radius: 100px;
     mix-blend-mode: color;
-    background: rgba(170,216,1, 0.5); }
+    background: rgba(170,216,1, 0.8); }
     .person-img.status-change::after {
     content: "";
     display: block;
@@ -241,7 +241,7 @@ div {
     right: 0;
     border-radius: 100px;
     mix-blend-mode: color;
-    background: rgba(230, 113, 27, 0.5); }
+    background: rgba(230, 113, 27, 0.8); }
      .person-img.status-no-change::after {
     content: "";
     display: block;
@@ -252,7 +252,7 @@ div {
     right: 0;
     border-radius: 100px;
     mix-blend-mode: color;
-    background: rgba(0, 87, 137, 0.5); }
+    background: rgba(0, 87, 137, 0.8); }
   .person-img img {
     filter: grayscale(100%);
     -webkit-filter: url(#greyed);
