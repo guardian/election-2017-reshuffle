@@ -7,6 +7,14 @@ import _ from 'underscore'
 var mode = null, data = null;
 var eventTimeout, totalOut = 0, outButton, element, outClicked = false;
 
+// breakpoints
+
+// 0    3-in-row
+// 400  4-in-row
+// 520  6-in-row
+// 620  3-in-row
+// 860  4-in-row
+
 /**
  * The function that runs the event actions
  */
@@ -27,8 +35,11 @@ var checkOutButton = function () {  //Toggle show button visibility for "Leaving
         maxToShow = 9;
     } else if (pageWidth >= 400 && pageWidth < 520) {
         maxToShow = 12;
-    } else if (pageWidth >= 520 && pageWidth < 860) {
+    } else if (pageWidth >= 520 && pageWidth < 620) {
          maxToShow = 18; // 18 - 5;
+         
+    } else if (pageWidth >= 620 && pageWidth < 860) {
+         maxToShow = 9; // 18 - 5;
          
     } else {
         maxToShow = 9999999;
@@ -134,6 +145,7 @@ function buildApp(resp) {
 
 outButton = document.getElementById("show-more-leaving-button");
 checkOutButton();
+
 // Run the event listener
 window.addEventListener( 'resize', eventThrottler, false );
 
@@ -175,6 +187,8 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+
 
 
 
