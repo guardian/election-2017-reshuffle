@@ -95,35 +95,33 @@ div {
   display: inline-block; 
 }
 
- @media (min-width: 860px) {
-   .gv-cabinet-people .person {
-  display: inline-block;
-} }
-
-.collapsed .person:nth-child(-n+9){
+.collapsed .person:nth-child(-n+6){ // was 9
     display:inline-block;
 }
 
  @media (min-width: 400px) {
-    .collapsed .person:nth-child(-n+12){
+    .collapsed .person:nth-child(-n+8){ // was 12
     display:inline-block;
 } }
   @media (min-width: 520px) {
-    .collapsed .person:nth-child(-n+18){
+    .collapsed .person:nth-child(-n+12){ // was 18
     display:inline-block;
 } }
   @media (min-width: 620px) {
   
-   .collapsed .person:nth-child(-n+18){
+   .collapsed .person:nth-child(-n+12){ // was 18
     display:none;
 }
-   .collapsed .person:nth-child(-n+9){
+   .collapsed .person:nth-child(-n+6){ // was 9
     display:inline-block;
 } }
 
  @media (min-width: 860px) {
-     .collapsed .person:nth-child(-n+18){
+     .collapsed .person:nth-child(-n+12){ // was 12
     display:inline-block;
+}
+.gv-cabinet-people .person {
+  display: inline-block;
 } }
 
 .person {
@@ -182,10 +180,11 @@ div {
   position: relative;
   line-height: 0;
   background: #767676;
+  background: #dcdcdc;
   border-radius: 100px;
   
   img {
-    opacity: 1;
+    opacity: 0.7;
   }
 
   }

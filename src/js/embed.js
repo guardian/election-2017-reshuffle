@@ -32,14 +32,14 @@ var checkOutButton = function () {  //Toggle show button visibility for "Leaving
   
 
     if (pageWidth < 400 ) {
-        maxToShow = 9;
+        maxToShow = 6; // was 9
     } else if (pageWidth >= 400 && pageWidth < 520) {
-        maxToShow = 12;
+        maxToShow = 8;  // was 12
     } else if (pageWidth >= 520 && pageWidth < 620) {
-         maxToShow = 18; // 18 - 5;
+         maxToShow = 12; // was 18
          
     } else if (pageWidth >= 620 && pageWidth < 860) {
-         maxToShow = 9; // 18 - 5;
+         maxToShow = 6; // was 9
          
     } else {
         maxToShow = 9999999;
