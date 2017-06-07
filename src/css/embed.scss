@@ -184,10 +184,53 @@ div {
   border-radius: 100px;
   
   img {
-    opacity: 0.7;
+    //opacity: 0.7;
+    opacity: 0.8;
   }
 
   }
+
+  .person-img.status-leaving::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background-image: url('./assets/imgs/cross-icon.svg');
+    background-size: 30px 30px;
+    background-position: center center;
+    background-color: rgba(227, 31, 38, 1); }
+
+    .person-img.status-new::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background-image: url('./assets/imgs/tick-icon.svg');
+    background-size: 30px 30px;
+    background-position: center center;
+    background-color: rgba(170,216,1, 1); }
+
+    .person-img.status-change::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background-image: url('./assets/imgs/arrow-icon.svg');
+    background-size: 30px 30px;
+    background-position: center center;
+    background-color: rgba(230, 113, 27, 1); }
 
   .person-info {
       text-align: center;
@@ -209,50 +252,50 @@ div {
        
   }
 
-   .person-img.status-leaving::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    mix-blend-mode: color;
-    background: rgba(227, 31, 38, 0.8); }
-    .person-img.status-new::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    mix-blend-mode: color;
-    background: rgba(170,216,1, 0.8); }
-    .person-img.status-change::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    mix-blend-mode: color;
-    background: rgba(230, 113, 27, 0.8); }
-     .person-img.status-no-change::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 100px;
-    mix-blend-mode: color;
-    background: rgba(0, 87, 137, 0.8);  }
+  //  .person-img.status-leaving::after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   border-radius: 100px;
+  //   mix-blend-mode: color;
+  //   background: rgba(227, 31, 38, 0.8); }
+  //   .person-img.status-new::after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   border-radius: 100px;
+  //   mix-blend-mode: color;
+  //   background: rgba(170,216,1, 0.8); }
+  //   .person-img.status-change::after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   border-radius: 100px;
+  //   mix-blend-mode: color;
+  //   background: rgba(230, 113, 27, 0.8); }
+  //    .person-img.status-no-change::after {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   border-radius: 100px;
+  //   mix-blend-mode: color;
+  //   background: rgba(0, 0, 0, 0.8);  }
   .person-img img {
     -webkit-filter: url(#greyed);
     filter: grayscale(100%);
