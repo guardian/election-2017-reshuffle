@@ -28,7 +28,6 @@ var checkOutButton = function () {  //Toggle show button visibility for "Leaving
     // get width of page;
 
     // get total of outs
-
   
 
     if (pageWidth < 400 ) {
@@ -87,9 +86,9 @@ function buildApp(resp) {
     mode = getParameterByName("mode");
     data = resp.sheets.Sheet1;
 
-    if (mode === null) {
-        mode = "full";
-    }
+    // if (mode === null) {
+    //     mode = "full";
+    // }
 
     //console.log(mode);
     //console.log(data);
@@ -132,6 +131,8 @@ function buildApp(resp) {
     personGroup.innerHTML = html;
     leaveGroup.innerHTML = leaveHtml;
 
+    if (mode != "full") {
+
     document.getElementById("show-more-person-button").addEventListener("click", function(){
     this.style.display = 'none';
     document.getElementById("person-group").className = "person-group expanded";
@@ -148,6 +149,13 @@ checkOutButton();
 
 // Run the event listener
 window.addEventListener( 'resize', eventThrottler, false );
+
+} else { // mode == full
+    document.getElementById("leaving-group").className = "person-group expanded";
+    document.getElementById("person-group").className = "person-group expanded";
+    document.getElementById("show-more-leaving-button").style.display = 'none';
+    document.getElementById("show-more-person-button").style.display = 'none';
+}
 
 }
 
