@@ -347,8 +347,9 @@ div {
     margin-top: 12px;
     margin-bottom: 20px;
     outline: 0;
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 86, 137);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 86, 137);
+    //border-color: rgb(0, 86, 137);
     border-color: rgb(0, 86, 137);
     display: inline-block;
     vertical-align: middle;
@@ -366,7 +367,7 @@ div {
     height: 30px;
 
     .button-text{
-      color: rgb(255, 255, 255);
+       color: rgb(0, 86, 137);
       font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       font-weight: bold;
       font-style: normal;
@@ -375,8 +376,23 @@ div {
     }
 
     svg {
-      fill: #fff;
+      fill: rgb(0, 86, 137);
       vertical-align: middle;
+    }
+
+    &:hover {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 86, 137);
+
+        svg {
+            fill: #ffffff;
+        }
+
+        .button-text{
+       color: rgb(255, 255, 255);
+        }
+
+
     }
 }
 
