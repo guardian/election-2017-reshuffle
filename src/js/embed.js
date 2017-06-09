@@ -94,13 +94,19 @@ function buildApp(resp) {
     //console.log(data);
     //console.log(_);
 
-    var i, html = "", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status, title, previousTitle;
+    var i, html = "", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status, title, name, previousTitle, creditHtml = "PA, AFP, Getty, PA, REX, News Pictures, Guardian";
 
     for (i = 0; i < data.length; i++) {
 
         status = getStatusClass(data[i]["Status"]);
         previousTitle = "";
         title = data[i]["Title"];
+        name = data[i]["Name"];
+
+        if ( name == "Photo credit") {
+            creditHtml = title;
+            continue;
+        }
 
         if (status == "change") {
             previousTitle = " was " + data[i]["Previous title"];
@@ -114,7 +120,7 @@ function buildApp(resp) {
 
         personHtml = personTemplate({
             photoSrc: data[i]["Photo"],
-            personName: data[i]["Name"],
+            personName: name,
             personTitle: title,
             personPreviousTitle: previousTitle,
             status: status
@@ -130,6 +136,7 @@ function buildApp(resp) {
 
     personGroup.innerHTML = html;
     leaveGroup.innerHTML = leaveHtml;
+    document.getElementById("gv-cabinet-footer").innerHTML = creditHtml;
 
     if (mode != "full") {
 
@@ -171,6 +178,10 @@ function getStatusClass(status) {
 
         case "new":
             return "new";
+            break;
+
+        case "new dup":
+            return "new-dup";
             break;
 
         case "leaving":
