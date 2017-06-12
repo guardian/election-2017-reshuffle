@@ -74,7 +74,7 @@ window.init = function init(el, config) {
     element = el;
 
     reqwest({
-        url: 'https://interactive.guim.co.uk/docsdata/1lrMs23YPKWxRStLVLiVj407bvIJvlG_WZxBMkVYui6I.json',
+        url: 'https://interactive.guim.co.uk/docsdata/1hklQ69aVug1qAWIiKCBaWmucNd625V-IGMKh8LTh1D4.json',
         type: 'json',
         crossOrigin: true,
         success: (resp) => buildApp(resp)
