@@ -8,9 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   }
   
- .resigned {
+.hidden {
 
-display:none;
+display:none!important;
 
 }
 
@@ -71,13 +71,13 @@ div {
   .gv-cabinet-dot.Unable {
     background: rgba(249, 130, 57, 0.75); }
   .gv-cabinet-dot.new {
-    background: rgba(77,198,221, 1); }
+    background: rgba(255,91,58, 1); }
   .gv-cabinet-dot.new-dup {
     background: rgba(153,0,46, 1); }
   .gv-cabinet-dot.leaving {
     background: rgba(252, 221, 3, 1); }
   .gv-cabinet-dot.change {
-    background: rgba(0, 87, 137, 1); }
+    background: rgba(128, 12, 12, 1); }
   .gv-cabinet-dot.no-change {
     background: rgba(0, 87, 137, 1); }
 
@@ -225,7 +225,7 @@ div {
     background-image: url('./assets/imgs/tick-icon.svg');
     background-size: 30px 30px;
     background-position: center center;
-    background-color: rgba(77,198,221, 1); }
+    background-color: rgba(255,91,58, 1); }
 
     .person-img.status-new-dup::after {
     content: "";
@@ -253,7 +253,7 @@ div {
     background-image: url('./assets/imgs/arrow-icon.svg');
     background-size: 30px 30px;
     background-position: center center;
-    background-color: rgba(0, 87, 137, 1); }
+    background-color: rgba(128, 12, 12, 1); }
 
   .person-info {
       text-align: center;
@@ -339,7 +339,7 @@ div {
     .gv-cabinet-leader {
       width: calc(100%/7); } }
 
-.resigned {
+#out-section {
   margin-top: 10px;
   padding-top: 5px; }
 

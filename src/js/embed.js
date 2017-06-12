@@ -108,6 +108,16 @@ function buildApp(resp) {
             continue;
         }
 
+        if ( name == "Main heading") {
+            document.getElementById("main-heading").innerHTML = title;
+            continue;
+        }
+
+        if ( name == "Out heading") {
+            document.getElementById("out-heading").innerHTML = title;
+            continue;
+        }
+
         if (status == "change") {
             previousTitle = " was " + data[i]["Previous title"];
         }
@@ -136,6 +146,11 @@ function buildApp(resp) {
 
     personGroup.innerHTML = html;
     leaveGroup.innerHTML = leaveHtml;
+
+    if (leaveHtml == "") {
+         document.getElementById("out-section").style.display = 'none';
+         document.getElementById("out-key").style.display = 'none';
+    }
     document.getElementById("gv-cabinet-footer").innerHTML = creditHtml;
 
     if (mode != "full") {
