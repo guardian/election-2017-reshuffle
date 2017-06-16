@@ -2,10 +2,15 @@ import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
 import embedHTML from './text/embed.html!text'
 import personHTML from './text/person.html!text'
-import _ from 'underscore'
+import _ from 'lodash'
+import {
+    nest
+} from 'd3-collection'
 
-var mode = null, data = null;
-var eventTimeout, totalOut = 0, outButton, element, outClicked = false;
+var mode = null,
+    data = null;
+var eventTimeout, totalOut = 0,
+    outButton, element, outClicked = false;
 
 // breakpoints
 
@@ -18,28 +23,28 @@ var eventTimeout, totalOut = 0, outButton, element, outClicked = false;
 /**
  * The function that runs the event actions
  */
-var checkOutButton = function () {  //Toggle show button visibility for "Leaving" group depending on viewport width
+var checkOutButton = function() { //Toggle show button visibility for "Leaving" group depending on viewport width
 
     var maxToShow = null;
 
     var pageWidth = element.offsetWidth;
-	// handle the event...
+    // handle the event...
 
     // get width of page;
 
     // get total of outs
-  
 
-    if (pageWidth < 400 ) {
+
+    if (pageWidth < 400) {
         maxToShow = 6; // was 9
     } else if (pageWidth >= 400 && pageWidth < 520) {
-        maxToShow = 8;  // was 12
+        maxToShow = 8; // was 12
     } else if (pageWidth >= 520 && pageWidth < 620) {
-         maxToShow = 12; // was 18
-         
+        maxToShow = 12; // was 18
+
     } else if (pageWidth >= 620 && pageWidth < 860) {
-         maxToShow = 6; // was 9
-         
+        maxToShow = 12; // was 9
+
     } else {
         maxToShow = 9999999;
     }
@@ -57,15 +62,15 @@ var checkOutButton = function () {  //Toggle show button visibility for "Leaving
 /**
  * Throttle events to only run at 15fps
  */
-var eventThrottler = function () {
-	// ignore resize events as long as an actualResizeHandler execution is in the queue
-	if ( !eventTimeout ) {
-		eventTimeout = setTimeout(function() {
-			eventTimeout = null;
-			checkOutButton();
-		 }, 66);
-	}
-}; 
+var eventThrottler = function() {
+    // ignore resize events as long as an actualResizeHandler execution is in the queue
+    if (!eventTimeout) {
+        eventTimeout = setTimeout(function() {
+            eventTimeout = null;
+            checkOutButton();
+        }, 66);
+    }
+};
 
 window.init = function init(el, config) {
     iframeMessenger.enableAutoResize();
@@ -74,7 +79,7 @@ window.init = function init(el, config) {
     element = el;
 
     reqwest({
-        url: 'https://interactive.guim.co.uk/docsdata/1lrMs23YPKWxRStLVLiVj407bvIJvlG_WZxBMkVYui6I.json',
+        url: 'https://interactive.guim.co.uk/docsdata/13i0JiOkbejMkclrLy39kNCK2no2cvgSBiUQL8GzjBq4.json',
         type: 'json',
         crossOrigin: true,
         success: (resp) => buildApp(resp)
@@ -86,6 +91,20 @@ function buildApp(resp) {
     mode = getParameterByName("mode");
     data = resp.sheets.Sheet1;
 
+    // group data by floor
+    let nested = nest()
+        .key(function(d) {
+            return d.Floor;
+        })
+        .entries(data)
+        .sort((a, b) => {
+            if(Number(a.key)) {
+                return Number(b.key) - Number(a.key)
+            } else {
+                return true;
+            }
+        });
+
     // if (mode === null) {
     //     mode = "full";
     // }
@@ -94,105 +113,88 @@ function buildApp(resp) {
     //console.log(data);
     //console.log(_);
 
-    var i, html = "", leaveHtml = "", personHtml, personTemplate = _.template(personHTML), personGroup = document.getElementById("person-group"), leaveGroup = document.getElementById("leaving-group"), status, title, name, previousTitle, creditHtml = "PA, AFP, Getty, PA, REX, News Pictures, Guardian";
+    var i, html = "",
+        leaveHtml = "",
+        headlineHtml, floor, personHtml, personTemplate = _.template(personHTML),
+        personGroup = document.getElementById("person-group"),
+        leaveGroup = document.getElementById("leaving-group"),
+        status, age, name, previousTitle, creditHtml = "PA, AFP, Getty, PA, REX, News Pictures, Guardian";
 
-    for (i = 0; i < data.length; i++) {
-
-        status = getStatusClass(data[i]["Status"]);
-        previousTitle = "";
-        title = data[i]["Title"];
-        name = data[i]["Name"];
-
-        if ( name == "Photo credit") {
-            creditHtml = title;
-            continue;
+    nested.forEach((floorData) => {
+        if (floorData.key) {
+            html += `<div class="floor-group"><h3>Floor ${floorData.key}</h3>`;
         }
+        let people = floorData.values;
+        for (i = 0; i < people.length; i++) {
+            age = people[i]["Age"];
+            name = people[i]["Name"];
+            floor = people[i]["Floor"];
 
-        if (status == "change") {
-            previousTitle = " was " + data[i]["Previous title"];
-        }
-        if (status == "leaving") {
-            //previousTitle = "Was " + data[i]["Previous title"];
-            previousTitle = "was " + data[i]["Previous title"] + "";
-            title = "";
-            totalOut ++;
-        }
+            if (name == "Photo credit") {
+                creditHtml = age;
+                continue;
+            }
 
-        personHtml = personTemplate({
-            photoSrc: data[i]["Photo"],
-            personName: name,
-            personTitle: title,
-            personPreviousTitle: previousTitle,
-            status: status
-        });
+            if (name === "Title") {
+                headlineHtml = age;
+                continue;
+            }
 
-        if (status == "leaving") {
-            leaveHtml += personHtml;
-        } else {
+            if (status == "change") {
+                previousTitle = " was " + people[i]["Previous title"];
+            }
+            if (status == "leaving") {
+                //previousTitle = "Was " + data[i]["Previous title"];
+                previousTitle = "was " + people[i]["Previous title"] + "";
+                title = "";
+                totalOut++;
+            }
+
+            personHtml = personTemplate({
+                photoSrc: people[i]["Photo"],
+                personName: name,
+                personAge: age,
+                personFloor: floor
+            });
+
             html += personHtml;
         }
 
-    }
+        if(floorData.key) {
+            html += `</div>`;
+        }
+    });
 
     personGroup.innerHTML = html;
-    leaveGroup.innerHTML = leaveHtml;
     document.getElementById("gv-cabinet-footer").innerHTML = creditHtml;
+    document.querySelector(".gv-cabinet-header h2").innerHTML = headlineHtml;
 
     if (mode != "full") {
 
-    document.getElementById("show-more-person-button").addEventListener("click", function(){
-    this.style.display = 'none';
-    document.getElementById("person-group").className = "person-group expanded";
-});
+        document.getElementById("show-more-person-button").addEventListener("click", function() {
+            this.style.display = 'none';
+            document.getElementById("person-group").className = "person-group expanded";
+        });
 
- document.getElementById("show-more-leaving-button").addEventListener("click", function(){
-     this.style.display = 'none';
-    document.getElementById("leaving-group").className = "person-group expanded";
-    outClicked = true;
-});
+        document.getElementById("show-more-leaving-button").addEventListener("click", function() {
+            this.style.display = 'none';
+            document.getElementById("leaving-group").className = "person-group expanded";
+            outClicked = true;
+        });
 
-outButton = document.getElementById("show-more-leaving-button");
-checkOutButton();
+        outButton = document.getElementById("show-more-leaving-button");
+        checkOutButton();
 
-// Run the event listener
-window.addEventListener( 'resize', eventThrottler, false );
+        // Run the event listener
+        window.addEventListener('resize', eventThrottler, false);
 
-} else { // mode == full
-    document.getElementById("leaving-group").className = "person-group expanded";
-    document.getElementById("person-group").className = "person-group expanded";
-    document.getElementById("show-more-leaving-button").style.display = 'none';
-    document.getElementById("show-more-person-button").style.display = 'none';
-}
-
-}
-
-function getStatusClass(status) {
-
-    status = status.toLowerCase().trim();
-
-    switch (status) {
-
-        case "change":
-            return "change";
-            break;
-
-        case "new":
-            return "new";
-            break;
-
-        case "new dup":
-            return "new-dup";
-            break;
-
-        case "leaving":
-            return "leaving";
-            break;
-
-        default:
-            return "no-change";
-            break;
-
+    } else { // mode == full
+        document.getElementById("leaving-group").className = "person-group expanded";
+        document.getElementById("person-group").className = "person-group expanded";
+        document.getElementById("show-more-leaving-button").style.display = 'none';
+        document.getElementById("show-more-person-button").style.display = 'none';
     }
+
 }
 
 function getParameterByName(name, url) {
@@ -206,9 +208,3 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
-
-
-
-
-
